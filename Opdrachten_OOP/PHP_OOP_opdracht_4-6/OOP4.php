@@ -15,23 +15,23 @@
         }
     }
 
-    $frisdrank1 = new Product();
-    $frisdrank1->setName(name:"frisdrank 1");
-    $frisdrank1->price = 40;
+    $fruitsoort1 = new Product();
+    $fruitsoort1->setName(name:"fruitsoort 1");
+    $fruitsoort1->price = 40;
 
-    $frisdrank2 = new Product();
-    $frisdrank2->setName(name:"frisdrank 2");
-    $frisdrank2->price = 10;
+    $fruitsoort2 = new Product();
+    $fruitsoort2->setName(name:"fruitsoort 2");
+    $fruitsoort2->price = 10;
 
 
-    echo "<br>".$frisdrank1->formatPrice(). "<br>";
-    echo $frisdrank1->name. "<br>";
-    echo $frisdrank1->price. "<br><br>";
+    echo "<br>".$fruitsoort1->formatPrice(). "<br>";
+    echo $fruitsoort1->name. "<br>";
+    echo $fruitsoort1->price. "<br><br>";
 
-    echo $frisdrank2->formatPrice(). "<br>";
-    echo $frisdrank2->name. "<br>";
-    echo $frisdrank2->price. "<br><br>";
+    echo $fruitsoort2->formatPrice(). "<br>";
+    echo $fruitsoort2->name. "<br>";
+    echo $fruitsoort2->price. "<br><br>";
     
-    var_dump($frisdrank1);
-    var_dump($frisdrank2);
+    var_dump($fruitsoort1);
+    var_dump($fruitsoort2);
 ?>

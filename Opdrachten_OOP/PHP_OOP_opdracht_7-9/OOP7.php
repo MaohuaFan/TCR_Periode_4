@@ -24,7 +24,6 @@
     }
 
     $muzieksoort1 = new Product(price:40, currency:"€", name:"muzieksoort 1");
-    $muzieksoort1->getProduct();
     //$muzieksoort2 = new Product(price:10, name:"muzieksoort 2");
 
 //    echo "<br>".$muzieksoort1->name."<br>";

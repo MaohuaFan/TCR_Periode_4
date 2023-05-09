@@ -17,13 +17,12 @@
     $frisdrank4->name = "Frisdrank 4";
 
 
-    echo $frisdrank1->name. "<br>";
+    echo "<br>".$frisdrank1->name. "<br>";
     echo $frisdrank2->name. "<br>";
-    echo $frisdrank3->name. "<br>";
-    echo $frisdrank4->name. "<br>";
+    echo $frisdrank3->name. "<br><br>";
     
     $frisdrank1->name = "Frisdrank_1";
-    echo $frisdrank1->name. "<br>";
+    echo $frisdrank1->name. "<br><br>";
 
     var_dump($frisdrank1);
     var_dump($frisdrank2);

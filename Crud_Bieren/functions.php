@@ -255,6 +255,6 @@ function dropDown($label, $data){
     }
 
     $text .= "</select>";
-    echo "$text";
+    echo "$text <br>";
 }
 ?>

@@ -18,7 +18,7 @@
         }
     }
 
-    $fruitsoort1 = new Product(price:40, currency:"€", name:"fruitsoort 1");
+    $fruitsoort1 = new Product(price:40, currency:"$", name:"fruitsoort 1");
     //$fruitsoort2 = new Product(price:10, name:"fruitsoort 2");
 
     //echo "<br>".$fruitsoort1->formatPrice(). "<br>";

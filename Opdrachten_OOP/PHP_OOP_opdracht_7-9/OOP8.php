@@ -5,7 +5,7 @@
         public $price;
         public $currency;
 
-        public function __construct($price, $name = "een muzieksoort", $currency = "&euro")
+        public function __construct($price, $name = "een product", $currency = "&euro")
         {
             $this->name = ucfirst($name);
             $this->price = $price;
@@ -23,22 +23,25 @@
         }
     }
 
-    $muzieksoort1 = new Product(price:40, currency:"€", name:"muzieksoort 1");
-    $muzieksoort2 = new Product(price:10, currency:"€", name:"muzieksoort 2");
-    $muzieksoort3 = new Product(price:50, currency:"€", name:"muzieksoort 3");
-    echo $muzieksoort1->getProduct()."<br>";
-    echo $muzieksoort2->getProduct()."<br>";
-    echo $muzieksoort3->getProduct()."<br><br>";
-    //$muzieksoort2 = new Product(price:10, name:"muzieksoort 2");
+    $product1 = new Product(name: "Techo beats", currency: "&euro", price: 2);
+    $product2 = new Product(price:10, currency:"€", name:"product 2");
+    $product3 = new Product(price:50, currency:"€", name:"product 3");
+    echo $product1->getProduct()."<br>";
+    echo $product2->getProduct()."<br>";
+    echo $product3->getProduct()."<br><br>";
+    //$product2 = new Product(price:10, name:"product 2");
 
-//    echo "<br>".$muzieksoort1->name."<br>";
-//    echo $muzieksoort1->currency."<br>";
-//    echo $muzieksoort1->price."<br><br>";
+//    echo "<br>".$product1->name."<br>";
+//    echo $product1->currency."<br>";
+//    echo $product1->price."<br><br>";
 
-    //echo $muzieksoort2->formatPrice(). "<br>";
-    //echo $muzieksoort2->name. "<br>";
-    //echo $muzieksoort2->price. "<br><br>";
+    //echo $product2->formatPrice(). "<br>";
+    //echo $product2->name. "<br>";
+    //echo $product2->price. "<br><br>";
     
-    var_dump($muzieksoort1);
-    //var_dump($muzieksoort2);
+    var_dump($product1);
+    echo"<br>";
+    var_dump($product2);
+    echo"<br>";
+    var_dump($product3);
 ?>

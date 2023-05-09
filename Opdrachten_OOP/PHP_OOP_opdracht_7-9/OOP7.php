@@ -1,11 +1,8 @@
 <?php
     class Product
     {
-        public $name;
-        public $price;
-        public $currency;
 
-        public function __construct($price, $name = "een muzieksoort", $currency = "&euro")
+        public function __construct(public $price, public $name = "een muzieksoort", public $currency = "&euro")
         {
             $this->name = ucfirst($name);
             $this->price = $price;
@@ -15,11 +12,6 @@
         public function formatPrice()
         {
             return number_format($this->price, decimals:2);
-        }
-
-        public function getProduct()
-        {
-            return "Het product ".$this->name." kost ".$this->currency." ".$this->price;
         }
     }
 

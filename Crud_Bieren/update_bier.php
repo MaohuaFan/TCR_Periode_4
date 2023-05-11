@@ -61,7 +61,7 @@ if(isset($_GET['biercode'])){
         <label for="3">Stijl: </label><input type="text" name="stijl" value="<?=$row['stijl']?>" id="3" required><br>
         <label for="4">Alcohol %: </label><input type="number" name="alcohol" value="<?=$row['alcohol']?>" id="4" required><br>
         <?php 
-            dropDown('brouwcode', GetData('brouwer', ''));
+            dropDown('brouwcode', GetData('brouwer', '',), '');
         ?>
         <!--
         <label for="5">Brouwcode: </label><select name="brouwcode" id="5">

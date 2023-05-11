@@ -245,8 +245,8 @@ function DeleteBier($biercode){
     }
 }
 */
-
-function dropDown($label, $data){
+/*
+function dropDown_($label, $data){
     $text = "<label for='$label'>Choose a $label:</label>
 
     <select name='$label' id='$label'>";
@@ -256,5 +256,22 @@ function dropDown($label, $data){
 
     $text .= "</select>";
     echo "$text <br>";
+}*/
+
+function dropDown($label, $data, $row_selected){
+    $txt = "
+    <label for='$label'>Choose a $label:</label>
+    <select name='$label' id='$label'>";
+    foreach($data as $row){
+        if ($row['brouwcode'] == $row_selected){
+            $txt .= "<option value='$row[brouwcode]' selected='selected'>$row[naam]</option>";
+        } else {
+            $txt .= "<option value='$row[brouwcode]'>$row[naam]</option>";
+        }
+    }
+    $txt .= "</select>";
+    echo $txt;
 }
+    
 ?>
+

@@ -272,6 +272,32 @@ function dropDown($label, $data, $row_selected){
     $txt .= "</select>";
     echo $txt;
 }
-    
-?>
 
+function insertBier($row){
+    echo '<h3> Update row </h3>';
+    var_dump($row);
+    echo '<br>';
+    try {
+        // Connect database
+        $conn = ConnectDb();
+        
+        $biercode = $_POST['biercode'];
+        $naam = $_POST['naam'];
+        $soort = $_POST['soort'];
+        $stijl = $_POST['stijl'];
+        $alcohol = $_POST['alcohol'];
+        $brouwcode = $_POST['brouwcode'];
+        
+        
+        $sql = "INSERT INTO `bier` 
+        (`biercode`, `naam`, `soort`, `stijl`, `alcohol`, `brouwcode`) 
+        VALUES ('$biercode', '$naam', '$soort', '$stijl', '$alcohol', '$brouwcode')";
+        #$conn->exec($sql);
+        $query = $conn->prepare($sql);
+        $query->execute();
+    } 
+    catch(PDOException $e) {
+        echo 'Connection failed: ' . $e->getMessage();
+    }
+}
+?>

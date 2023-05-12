@@ -1,10 +1,10 @@
 <?php
 
-class Muziek
+class Music
 {
     public $name;
     public $genre;
-    public $seen;
+    public $listen;
 
     /**
      * @param string $name
@@ -12,11 +12,11 @@ class Muziek
      * @param int $seen
      */
 
-    public function __construct($name, $genre, $seen)
+    public function __construct($name, $genre, $listen)
     {
         $this->name = $name;
         $this->genre = $genre;
-        $this->seen = $seen;
+        $this->listen = $listen;
     }
 
     public function getName()

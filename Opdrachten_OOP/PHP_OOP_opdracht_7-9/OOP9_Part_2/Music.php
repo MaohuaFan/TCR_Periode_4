@@ -9,7 +9,7 @@ class Music
     /**
      * @param string $name
      * @param string $genre
-     * @param int $seen
+     * @param int $listen
      */
 
     public function __construct($name, $genre, $listen)

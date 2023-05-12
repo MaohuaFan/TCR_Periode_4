@@ -7,5 +7,5 @@
 
     echo $movie1->getName();
 
-    var_dump($movie1)
+    var_dump($movie1);
 ?>

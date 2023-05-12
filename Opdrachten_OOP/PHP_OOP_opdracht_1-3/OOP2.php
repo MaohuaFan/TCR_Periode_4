@@ -17,7 +17,7 @@
     $frisdrank4->name = "Frisdrank 4";
 
 
-    echo "<br>".$frisdrank1->name. "<br>";
+    echo $frisdrank1->name. "<br>";
     echo $frisdrank2->name. "<br>";
     echo $frisdrank3->name. "<br><br>";
     

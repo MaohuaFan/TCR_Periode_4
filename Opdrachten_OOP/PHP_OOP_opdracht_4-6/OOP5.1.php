@@ -5,21 +5,20 @@
         public $price;
         public $category;
 
-        public function setName($name)
+        public function __construct($name, $price)
         {
             $this->name = ucfirst($name);
+            $this->price = $price;
+            $this->category = strtoupper($category);
         }
 
         public function formatPrice()
         {
             return number_format($this->price, decimals:2);
         }
-
-        public function setCategory()
-        {
-            $this->category = strtoupper($category);
-        }
     }
+
+    $fruitsoort1 = new Product(name:"fruitsoort 1", price:40, category:"category 1");
 
     $frisdrank1 = new Product();
     $fruitsoort1->setName(name:"fruitsoort 1");

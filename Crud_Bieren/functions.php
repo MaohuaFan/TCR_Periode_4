@@ -280,7 +280,7 @@ function insertBier(){
         // Connect database
         $conn = ConnectDb();
         
-        $biercode = $_POST['biercode'];
+        #$biercode = $_POST['biercode'];
         $naam = $_POST['biernaam'];
         $soort = $_POST['soort'];
         $stijl = $_POST['stijl'];
@@ -290,7 +290,7 @@ function insertBier(){
         
         $sql = "INSERT INTO `bier` 
         (`biercode`, `naam`, `soort`, `stijl`, `alcohol`, `brouwcode`) 
-        VALUES ('$biercode', '$naam', '$soort', '$stijl', '$alcohol', '$brouwcode')";
+        VALUES ('', '$naam', '$soort', '$stijl', '$alcohol', '$brouwcode')";
         #$conn->exec($sql);
         $query = $conn->prepare($sql);
         $query->execute();

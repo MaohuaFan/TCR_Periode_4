@@ -3,17 +3,19 @@
     
     require_once 'Music.php';
 
-    require_once 'WatchList.php';
+    require_once 'ListenList.php';
 
-    $piet = new WatchList();
+    $kees = new ListenList();
 
     $music1 = new Music (name: 'Bach', genre:'Klassiek', listen: 3);
-    $movie2 = new Movie(name:'Pirates', genre:'fantasy', seen:1);
+    $music2 = new Music (name:'ABC', genre: 'House', listen: 2);
 
-    $piet->addMovie($movie1);
-    $piet->addMovie($movie2);
+    $kees->addMovie($movie1);
+    $kees->addMovie($movie2);
     
     echo $music1->getName()."<br><br>";
+    echo $music2->getName()."<br><br>";
     
     var_dump($music1);
+    var_dump($music2);
 ?>

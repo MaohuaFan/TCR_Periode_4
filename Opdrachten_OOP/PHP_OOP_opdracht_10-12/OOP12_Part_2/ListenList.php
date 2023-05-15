@@ -1,12 +1,12 @@
 <?php
 
-class WatchList
+class ListenList
 {
     public array $movies = [];
 
-    public function addMovie(Movie $movie)
+    public function addMusic($music)
     {
-        $this->movies[] = $movie;
+        $this->music [] = $music;
     }
 }
 

@@ -32,7 +32,7 @@ if(isset($_POST) && isset($_POST['submit'])){
     </head>
     <body>
         <form action="#" method="post">
-            <!--<label for="0">Biercode: </label>--><input type="number" name="biercode" value="9999" id="0" hidden required><br>
+            <!--<label for="0">Biercode: </label>--><input type="number" name="biercode" value="99299" id="0" hidden required><br>
             <label for="1">Biernaam: </label><input type="text" name="biernaam" value="" id="1" required><br>
             <label for="2">Soort: </label><input type="text" name="soort" value="" id="2" required><br>
             <label for="3">Stijl: </label><input type="text" name="stijl" value="" id="3" required><br>
@@ -40,7 +40,7 @@ if(isset($_POST) && isset($_POST['submit'])){
             <?php 
                 dropDown('brouwcode', GetData('brouwer', '',), '');
             ?>
-            <input type="submit" name="submit" value="Wijzigen" id="submit">
+            <br><input type="submit" name="submit" value="Insert" id="submit">
         </form>
     <a href="crud_bieren.php">Terug naar crud bieren</a>
     </body>

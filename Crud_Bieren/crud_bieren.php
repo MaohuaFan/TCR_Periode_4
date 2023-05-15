@@ -7,8 +7,8 @@ include 'functions.php';
 
 // Main
 
-//Insert
-echo'<a href="insert_bier.php">InsertBier</a>'
+//InsertBier
+echo '<a href="insert_bier.php">InsertBier</a> <br><br>';
 
 
 // Print bieren opdracht 12

@@ -274,7 +274,7 @@ function dropDown($label, $data, $row_selected){
 }
 
 function insertBier($row){
-    echo '<h3> Update row </h3>';
+    echo '<h3> Insert bier </h3>';
     var_dump($row);
     echo '<br>';
     try {
@@ -282,7 +282,7 @@ function insertBier($row){
         $conn = ConnectDb();
         
         $biercode = $_POST['biercode'];
-        $naam = $_POST['naam'];
+        $naam = $_POST['biernaam'];
         $soort = $_POST['soort'];
         $stijl = $_POST['stijl'];
         $alcohol = $_POST['alcohol'];

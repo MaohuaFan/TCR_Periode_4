@@ -32,7 +32,7 @@ if(isset($_POST) && isset($_POST['submit'])){
     </head>
     <body>
         <form action="#" method="post">
-            <!--<label for="0">Biercode: </label>--><input type="number" name="biercode" value="99299" id="0" hidden required><br>
+            <!--<label for="0">Biercode: </label>--><input type="number" name="biercode" id="0" hidden><br>
             <label for="1">Biernaam: </label><input type="text" name="biernaam" value="" id="1" required><br>
             <label for="2">Soort: </label><input type="text" name="soort" value="" id="2" required><br>
             <label for="3">Stijl: </label><input type="text" name="stijl" value="" id="3" required><br>

@@ -14,7 +14,7 @@ echo '<h1> Insert Bier </h1>';
 
 // Test of er op de wijzig-knop is gedrukt
 if(isset($_POST) && isset($_POST['submit'])){
-    InsertBier($_POST);
+    InsertBier();
 
     #header("location:crud_bieren.php"); 
 

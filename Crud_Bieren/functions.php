@@ -273,9 +273,8 @@ function dropDown($label, $data, $row_selected){
     echo $txt;
 }
 
-function insertBier($row){
+function insertBier(){
     echo '<h3> Insert bier </h3>';
-    var_dump($row);
     echo '<br>';
     try {
         // Connect database

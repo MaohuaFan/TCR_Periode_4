@@ -25,7 +25,7 @@ function ConnectDb($DBName){
 
  function GetData($distinct, $table, $filter){
     // Connect Database
-    $conn = ConnectDb();
+    $conn = ConnectDb("Bieren");
 
     if(empty($distinct)){
         $distinct = "";
@@ -151,7 +151,7 @@ function UpdateBier($row){
     echo '<br>';
     try {
         // Connect database
-        $conn = ConnectDb();
+        $conn = ConnectDb("bieren");
         
         // Update data uit de opgegeven table methode query
         // query: is een prepare en execute in 1 zonder placeholders
@@ -180,7 +180,7 @@ function DeleteBier($biercode){
     var_dump($biercode);
     try {
         // Connect database
-        $conn = ConnectDb();
+        $conn = ConnectDb("bieren");
         
         // Update data uit de opgegeven table methode query
         // Query: is een prepare en execute in 1 zonder placeholders
@@ -244,7 +244,7 @@ function insertBier($_POST){
     echo '<br>';
     try {
         // Connect database
-        $conn = ConnectDb();
+        $conn = ConnectDb("bieren");
         
         #$biercode = $_POST['biercode'];
         $naam = $_POST['biernaam'];

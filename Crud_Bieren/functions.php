@@ -273,7 +273,7 @@ function dropDown($label, $data, $row_selected){
     echo $txt;
 }
 
-function insertBier(){
+function insertBier($_POST){
     echo '<h3> Insert bier </h3>';
     echo '<br>';
     try {

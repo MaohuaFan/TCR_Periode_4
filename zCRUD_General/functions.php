@@ -1,11 +1,11 @@
 <?php
 // Auteur: MHF
 // Functie: Algemene functies tbv hergebruik
- function ConnectDb(){
+ function ConnectDb($dbName){
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "bieren";
+    $dbname = "$dbName";
    
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -19,42 +19,34 @@
     catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
     }
-
  }
 
- function GetData($column, $table){
+ function GetData($column, $table, $category, $filters){
     if(empty($column)){
         $column = "*";
     }
+    if(empty($filters)){
+        $filter = ""; // Full Syntax
+        $category = ""; // raw category name // biercode
+                        //filters = categoryid // filters = $biercode
+    }else{
+        $categoryparam =":".$category; // :biercode
+        $filter = "WHERE ".$category." = ".$categoryparam; // WHERE biercode = :biercode
+    }
 
     // Connect database
-    $conn = ConnectDb();
+    $dbName = "bieren";
+    $conn = ConnectDb($dbName);
 
     // Select data uit de opgegeven table methode query
     // Query: is een prepare en execute in 1 zonder placeholders
-    // $result = $conn->query("SELECT * FROM $table")->fetchAll();
-
     // Select data uit de opgegeven table methode prepare
-    $query = $conn->prepare("SELECT $column FROM $table");
+    $query = $conn->prepare("SELECT $column FROM $table $filter");
+    if(!empty($filter)){
+        $query->bindParam("$categoryparam", $filters); // ":biercode",$biercode
+    }
     $query->execute();
     $result = $query->fetchAll();
-
-    return $result;
- }
-
- function GetBrouwer($brouwcode){
-    // Connect database
-    $conn = ConnectDb();
-
-    // Select data uit de opgegeven table methode query
-    // Query: is een prepare en execute in 1 zonder placeholders
-    // $result = $conn->query("SELECT * FROM $table")->fetchAll();
-
-    // Select data uit de opgegeven table methode prepare
-    $query = $conn->prepare("SELECT * FROM brouwer WHERE brouwcode = :brouwcode");
-    $query->bindParam(':brouwcode', $brouwcode);
-    $query->execute();
-    $result = $query->fetch();
 
     return $result;
  }

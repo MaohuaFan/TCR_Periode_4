@@ -81,15 +81,15 @@ function PrintTable($result){
 }
 
 
-function CrudBrouwer(){
-    // Haal alle brouwer record uit de tabel 
-    $result = GetData("", "brouwer");
+function CrudFullCrudName(){
+    // Haal alle crudnaam record uit de tabel 
+    $result = GetData("", "CrudNaam");
     
     // Print table
-    PrintCrudBrouwer($result);
+    PrintFullCrudName($result);
  }
 
-function PrintCrudBrouwer($result){
+function PrintFUllCrudName($result){
     // Zet de hele table in een variable en print hem 1 keer 
     $table = "<table border = 1px>";
 
@@ -113,12 +113,12 @@ function PrintCrudBrouwer($result){
         
         // Wijzig knopje
         $table .= "<td>". 
-            "<form method='post' action='update_brouwer.php?brouwcode=$row[brouwcode]' >       
+            "<form method='post' action='update_CrudNaam.php?CrudCode=$row[CrudCode]' >       
                     <button name='weizig'>Weizig</button>	 
             </form>" . "</td>";
         
         $table .= "<td>". 
-            "<form method='post' action='delete_brouwer.php?brouwcode=$row[brouwcode]' >       
+            "<form method='post' action='delete_CrudNaam.php?CrudCode=$row[CrudCode]' >       
                     <button name='verwijder'>Verwijder</button>	 
             </form>" . "</td>";
 
@@ -130,7 +130,7 @@ function PrintCrudBrouwer($result){
 }
 
 
-function UpdateBrouwer(){
+function UpdateFullCrudName(){
     echo '<h3> Update row </h3>';
     var_dump($_POST);
     echo '<br>';
@@ -138,18 +138,18 @@ function UpdateBrouwer(){
         // Connect database
         $conn = ConnectDb();
         
-        $brouwcode = $_POST['brouwcode'];
-        $naam = $_POST['brouwernaam'];
+        $CrudCode = $_POST['CrudCode'];
+        $naam = $_POST['CrudNaamnaam'];
         $land = $_POST['land'];
         // Update data uit de opgegeven table methode query
         // query: is een prepare en execute in 1 zonder placeholders
         
         // Update data uit de opgegeven table methode prepare
-        $sql = "UPDATE `brouwer` 
+        $sql = "UPDATE `CrudNaam` 
                 SET 
                     `naam` = '$naam', 
                     `land` = '$land' 
-                WHERE `brouwer`.`brouwcode` = $brouwcode";
+                WHERE `CrudNaam`.`CrudCode` = $CrudCode";
         $query = $conn->prepare($sql);
         $query->execute();
     } 
@@ -158,19 +158,20 @@ function UpdateBrouwer(){
     }
 }
 
-function DeleteBrouwer($brouwcode){
+function DeleteFulLCrudName($CrudCode){
     echo 'Delete row <br>';
-    var_dump($brouwcode);
+    var_dump($CrudCode);
     try {
         // Connect database
-        $conn = ConnectDb();
+        $dbName ="bieren";
+        $conn = ConnectDb($dbName);
         
         // Update data uit de opgegeven table methode query
         // Query: is een prepare en execute in 1 zonder placeholders
         
-        $sql = "DELETE FROM brouwer WHERE `brouwer`.`brouwcode` = :brouwcode";
+        $sql = "DELETE FROM CrudNaam WHERE `CrudNaam`.`CrudCode` = :CrudCode";
         $query = $conn->prepare($sql);
-        $query->bindParam(':brouwcode', $brouwcode);
+        $query->bindParam(':CrudCode', $CrudCode);
         $query->execute();
     } 
     catch(PDOException $e) {
@@ -193,18 +194,18 @@ function dropDown($label, $data, $row_selected){
     echo $txt;
 }
 
-function insertBrouwer(){
-    echo '<h3> Insert Brouwer </h3>';
+function InsertFullCrudName(){
+    echo '<h3> Insert FullCrudName </h3>';
     echo '<br>';
     try {
         // Connect database
         $conn = ConnectDb();
         
-        $naam = $_POST['brouwernaam'];
+        $naam = $_POST['CrudNaamnaam'];
         $land = $_POST['land'];
         
-        $sql = "INSERT INTO `brouwer` 
-        (`brouwcode`, `naam`, `land`) 
+        $sql = "INSERT INTO `CrudNaam` 
+        (`CrudCode`, `naam`, `land`) 
         VALUES ('', '$naam', '$land')";
         $query = $conn->prepare($sql);
         $query->execute();

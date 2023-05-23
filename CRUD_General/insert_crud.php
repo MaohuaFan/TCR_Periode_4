@@ -1,5 +1,5 @@
 <?php
-// Functie: Insert Brouwer
+// Functie: Insert FullCrudName
 // Auteur: MHF   
 
 // Initialisatie
@@ -10,12 +10,12 @@ require_once('functions.php');
 
 
 // Print ---
-echo '<h1> Insert Brouwer </h1>';
+echo '<h1> Insert FullCrudName </h1>';
 
 // Test of er op de wijzig-knop is gedrukt
 if(!empty(isset($_POST) && isset($_POST['submit']))){
-    InsertBrouwer();
-    header("location:crud_brouwer.php"); 
+    InsertFullCrudName();
+    header("location:crud_CrudNaam.php"); 
 }    
 ?>
 
@@ -25,18 +25,18 @@ if(!empty(isset($_POST) && isset($_POST['submit']))){
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Insert Brouwer</title>
+        <title>Insert FullCrudName</title>
     </head>
     <body>
         <form action="#" method="post">
-            <input type="number" name="brouwcode" id="0" hidden><br>
-            <label for="1">Brouwnaam: </label><input type="text" name="brouwernaam" value="" id="1" required><br>
+            <input type="number" name="CrudCode" id="0" hidden><br>
+            <label for="1">CrudNaamnaam: </label><input type="text" name="CrudNaamnaam" value="" id="1" required><br>
             <?php 
                 $column = 'DISTINCT land';
-                dropDown('land', GetData($column,'brouwer'), 'land');
+                dropDown('land', GetData($column,'CrudNaam'), 'land');
             ?>
             <br><input type="submit" name="submit" value="Insert" id="submit">
         </form>
-    <a href="crud_brouwer.php">Terug naar overzicht</a>
+    <a href="crud_CrudNaam.php">Terug naar overzicht</a>
     </body>
 </html>

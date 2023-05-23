@@ -8,7 +8,7 @@ include 'functions.php';
 // Main
 
 //Insert Brouwer
-echo '<a href="insert_brouwer.php">Insertbrouwer</a> ';
+echo '<a href="insert_brouwer.php">Insertbrouwer</a><br>';
 
 
 // Print Brouwer

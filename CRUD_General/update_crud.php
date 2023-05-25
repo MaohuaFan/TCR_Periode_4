@@ -23,7 +23,7 @@ if(isset($_GET['CrudCode'])){
     echo '<br> Data uit het vorige formulier: <br>';
     // Haal alle info van de betreffende CrudCode $_GET['CrudCode']
      $CrudCode = $_GET['CrudCode'];
-     $row = GetFullNameCrud($CrudCode);    
+     $row = GetData('', 'CrudName', 'CrudCode', $CrudCode);    
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +37,7 @@ if(isset($_GET['CrudCode'])){
 <body>
     <form action="#" method="post">
         <input type="number" name="CrudCode" value="<?php echo $_GET['CrudCode']?>" id="0" hidden required><br>
-        <label for="1">FullCrudNamenaam: </label><input type="text" name="crudnamenaam" value="<?=$row['naam']?>" id="1" required><br>
+        <label for="1">FullCrudNamenaam: </label><input type="text" name="CrudNaamnaam" value="<?=$row['naam']?>" id="1" required><br>
         <?php 
             dropDown('land', GetData('','CrudNaam'), 'land');
         ?>

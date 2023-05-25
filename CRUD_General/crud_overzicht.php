@@ -7,12 +7,12 @@ include 'functions.php';
 
 // Main
 
-//Insert Brouwer
+//Insert FullCrudName
 echo '<a href="insert_CrudNaam.php">Insert FullCrudName</a> ';
 
 
-// Print Brouwer
-CrudBrouwer();
+// Print FullCrudName
+CrudFullCrudName();
 
 //FullCrudName = Brouwer
 //CrudNaam = brouwer

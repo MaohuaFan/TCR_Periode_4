@@ -21,17 +21,17 @@
     }
  }
 
- function GetData($column, $table, $category, $filters){
+ function GetData($table, $column, $filternaam, $filters){
     if(empty($column)){
         $column = "*";
     }
     if(empty($filters)){
         $filter = ""; // Full Syntax
-        $category = ""; // raw category name // biercode
+        $filternaam = ""; // raw category name // biercode
                         //filters = categoryid // filters = $biercode
     }else{
-        $categoryparam =":".$category; // :biercode
-        $filter = "WHERE ".$category." = ".$categoryparam; // WHERE biercode = :biercode
+        $filternaamparam =":".$filternaam; // :biercode
+        $filter = "WHERE ".$filternaam." = ".$filternaamparam; // WHERE biercode = :biercode
     }
 
     // Connect database
@@ -43,7 +43,7 @@
     // Select data uit de opgegeven table methode prepare
     $query = $conn->prepare("SELECT $column FROM $table $filter");
     if(!empty($filter)){
-        $query->bindParam("$categoryparam", $filters); // ":biercode",$biercode
+        $query->bindParam("$filternaamparam", $filters); // ":biercode",$biercode
     }
     $query->execute();
     $result = $query->fetchAll();
@@ -51,6 +51,7 @@
     return $result;
  }
 
+ /*
 // Function 'PrintTable' print een HTML-table met data uit $result.
 function PrintTable($result){
     // Zet de hele table in een variable en print hem 1 keer 
@@ -78,8 +79,7 @@ function PrintTable($result){
     $table.= "</table>";
 
     echo $table;
-}
-
+}*/
 
 function CrudFullCrudName(){
     // Haal alle crudnaam record uit de tabel 

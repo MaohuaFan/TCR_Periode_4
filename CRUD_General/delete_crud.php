@@ -16,7 +16,7 @@ if(isset($_GET['CrudCode'])){
     echo '<br> Data uit het vorige formulier: <br>';
     // Haal alle info van de betreffende CrudCode $_GET['CrudCode']
     $brouwcode = $_GET['CrudCode'];
-    $row = FullCrudName($CrudCode);
+    $row = GetData('','','','');
     echo '<table border = 1px>';
         echo '<tr>';
             foreach ($row as  $value) {
@@ -30,7 +30,7 @@ if(isset($_GET['CrudCode'])){
 
 // Test of er op de wijzig-knop is gedrukt
 if(isset($_POST) && isset($_POST['submit'])){
-    DeleteFulLCrudName($CrudCode);
+    DeleteFullCrudName($CrudCode);
     
     header("location:crud_CrudNaam.php");
 }

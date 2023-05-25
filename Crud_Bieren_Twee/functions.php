@@ -1,11 +1,11 @@
 <?php
 // Auteur: Wigmans
 // Functie: Algemene functies tbv hergebruik
- function ConnectDb(){
+ function ConnectDb($dbName){
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "bieren";
+    $dbname = "$dbName";
    
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -24,101 +24,51 @@
 
  
  
- function GetData($table){
+ function GetData($dbName, $table, $columns, /*$filternaam,*/ $filter){
+    if(empty($columns)){
+        $columns = "*";
+    }
+
     // Connect database
-    $conn = ConnectDb();
+    $conn = ConnectDb($dbName);
 
     // Select data uit de opgegeven table methode query
     // Query: is een prepare en execute in 1 zonder placeholders
-    // $result = $conn->query("SELECT * FROM $table")->fetchAll();
-
     // Select data uit de opgegeven table methode prepare
-    $query = $conn->prepare("SELECT * FROM $table");
+    $query = $conn->prepare("SELECT $columns FROM $table $filter");
+    //$query = $conn->prepare("SELECT bier.biercode, bier.naam AS biernaam, bier.soort, bier.stijl, bier.alcohol, brouwer.naam AS brouwernaam FROM `bier`,`brouwer` 
+    //WHERE bier.brouwcode = brouwer.brouwcode;");
+    
+/*
+    if(!empty($filter)){
+        $query->bindParam("$filternaamparam", $filters); // ":biercode",$biercode
+    }
+*/
+
     $query->execute();
     $result = $query->fetchAll();
 
     return $result;
  }
-
- function GetBier($biercode){
-    // Connect database
-    $conn = ConnectDb();
-
-    // Select data uit de opgegeven table methode query
-    // Query: is een prepare en execute in 1 zonder placeholders
-    // $result = $conn->query("SELECT * FROM $table")->fetchAll();
-
-    // Select data uit de opgegeven table methode prepare
-    $query = $conn->prepare("SELECT * FROM bier WHERE biercode = :biercode");
-    $query->bindParam(':biercode', $biercode);
-    $query->execute();
-    $result = $query->fetch();
-
-    return $result;
- }
-
  
-
-
- function OvzBieren(){
-
-    // Haal alle bier record uit de tabel 
-    $result = GetData("bier", "");
-    
-    // Print table
-    PrintTable($result);
-    //PrintTableTest($result);
-    
- }
-
- function PrintTableTest($result){
-    // Zet de hele table in een variable en print hem 1 keer 
-    $table = "<table border = 1px>";
-    // Print elke rij
-    foreach ($result as $row) {
-        echo "<br> rij:";
-        
-        foreach ($row as  $value) {
-            echo "kolom" . "$value";
-        }          
-        
-    }
-}
-
-// Function 'PrintTable' print een HTML-table met data uit $result.
-function PrintTable($result){
-    // Zet de hele table in een variable en print hem 1 keer 
-    $table = "<table border = 1px>";
-
-    // Print header table
-
-    // Haal de kolommen uit de eerste [0] van het array $result mbv array_keys
-    $headers = array_keys($result[0]);
-    $table .= "<tr>";
-    foreach($headers as $header){
-        $table .= "<th bgcolor=gray>" . $header . "</th>";   
-    }
-
-    // Print elke rij
-    foreach ($result as $row) {
-        
-        $table .= "<tr>";
-        // Print elke kolom
-        foreach ($row as $cell) {
-            $table .= "<td>" . $cell . "</td>";
-        }
-        $table .= "</tr>";
-    }
-    $table.= "</table>";
-
-    echo $table;
-}
-
-
 function CrudBieren(){
+    $dbName = "bieren";
+    $tables = " `bier`,`brouwer` ";
+    $columns = " bier.biercode, bier.naam as biernaam, bier.soort, bier.stijl, bier.alcohol, brouwer.naam AS brouwernaam ";
+    $filter = " WHERE bier.brouwcode = brouwer.brouwcode ";
+/*
+    if(empty($filters)){
+        $filter = ""; // Full Syntax
+        $filternaam = ""; // raw category name // biercode
+                        //filters = categoryid // filters = $biercode
+    }else{
+        $filternaamparam =":".$filternaam; // :biercode
+        $filter = "WHERE ".$filternaam." = ".$filternaamparam; // WHERE biercode = :biercode
+    }
+*/
 
     // Haal alle bier record uit de tabel 
-    $result = GetData("bier");
+    $result = GetData("$dbName","$tables","$columns", "$filter");
     
     // Print table
     PrintCrudBier($result);

@@ -51,7 +51,7 @@ function GetDataDistinct($table){
     return $result;
 }
 
- // selecteer de rij van de opgeven biercode uit de table bier
+ // selecteer de rij van de opgeven filmid uit de table film
  function GetFilm($filmid){
     // Connect database
     $conn = ConnectDb();

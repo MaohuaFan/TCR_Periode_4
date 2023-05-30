@@ -9,7 +9,7 @@
     if(isset($_POST['btn_wzg'])){
         UpdateFilm($_POST);
 
-        //header("location: crud_bieren.php");
+        //header("location: CRUD_Film.php");
     }
 
     if(isset($_GET['filmid'])){  

@@ -5,7 +5,7 @@
 include 'functions.php';
 echo "<h1>Update Film</h1>";
 
-// Haal bier uit de database
+// Haal film uit de database
 if(isset($_GET['filmid'])){
     DeleteFilm($_GET['filmid']);
 

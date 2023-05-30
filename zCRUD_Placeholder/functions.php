@@ -53,6 +53,20 @@ function GetData($table, $column, $filter){
     return $result;
 }
 
+function GetBier($biercode){
+    $dbName = 'bieren';
+    $table = 'bier';
+    $column = 'biercode';
+
+    // Connect Database
+    $conn = ConnectDb("$dbName");
+    $query = $conn->prepare("SELECT * FROM $table WHERE $column = $biercode");
+    $query->execute();
+    $result = $query->fetch();
+
+    return $result;
+ }
+
 function CrudOverzicht(){
     // CHANGE table column filter to designated CRUD Overview 
     $table = " `bier`,`brouwer` ";
@@ -91,7 +105,7 @@ function PrintCrudOverzicht($result, $ColumnId){
             
             # Wijzig knopje 
             $table .= "<td>". 
-                "<form method='post' action='Update_CRUD.php?$$ColumnId=$row[$ColumnId]' > 
+                "<form method='post' action='Update_CRUD.php?$ColumnId=$row[$ColumnId]' > 
                         <button name='weizig'>Weizig</button>	 
                 </form>" . "</td>";
 
@@ -111,6 +125,7 @@ function GetCRUD($variant, $ColumnId, $row){
     // $ColumnID > DELETE based on id
     // $row > GetData with filter for Update
 
+
     try {
         // Connect Current Database
         $dbName = ConnectCurrentDb();
@@ -119,43 +134,50 @@ function GetCRUD($variant, $ColumnId, $row){
 
     switch ($variant) {
         case 0: // UPDATE
-            $type = "Update";
-            var_dump($row); // REMEMBER to configure $row in update_bier.php with GetData
+            $type = "UPDATE";
+            $ColumnId = "biercode";
 
             # Update data uit de opgegeven table methode query
             # query: is een prepare en execute in 1 zonder placeholders
             # Update data uit de opgegeven table methode prepare
         
             // CHANGE the $sql and variable names
-            $sql = "UPDATE `$table` 
+            $sql = "$type `$table` 
             SET 
-                `naam` = '$row[biernaam]', 
+                `naam` = '$row[naam]', 
                 `soort` = '$row[soort]', 
-            WHERE `$table`.`ColumnId` = $row[ColumnId]"; 
+                `stijl` = '$row[stijl]', 
+                `alcohol` = '$row[alcohol]', 
+                `brouwcode` = '$row[brouwcode]'
+            WHERE `$table`.`$ColumnId` = $row[$ColumnId]"; 
             $query = $conn->prepare($sql);
             break;
 
         case 1: // DELETE
-            $type = "Delete";
+            $type = "DELETE";
             var_dump($ColumnId);
 
             # Update data uit de opgegeven table methode query
             # Query: is een prepare en execute in 1 zonder placeholders
-            $sql = "DELETE FROM $table WHERE `$table`.`ColumnId` = :ColumnId";
+            $sql = "$type FROM $table WHERE `$table`.`ColumnId` = :ColumnId";
             $query = $conn->prepare($sql);
             $query->bindParam(':ColumnId', $ColumnId);
             break;
 
         case 2: // INSERT
-            $type = "Insert";
-
-            $naam = $_POST['biernaam']; // CHANGE the $_Post and variable names
-            $soort = $_POST['soort']; // CHANGE the $_Post and variable names
+            $type = "INSERT";
+            var_dump($_POST);
+            echo"<br>";
+            $naam = $_POST['naam'];
+            $soort = $_POST['soort'];
+            $stijl = $_POST['stijl'];
+            $alcohol = $_POST['alcohol'];
+            $brouwcode = $_POST['brouwcode'];
             
             // CHANGE the $sql and variable names
-            $sql = "INSERT INTO `$table` 
-            (`id`, `naam`, `soort`) 
-            VALUES ('', '$naam', '$soort')";
+            $sql = "$type INTO `$table` 
+            (id, naam, soort, stijl, alcohol, brouwcode) 
+            VALUES ('', $naam, $soort, $stijl, $alcohol, $brouwcode)";
             $query = $conn->prepare($sql);
             break;
 
@@ -168,7 +190,7 @@ function GetCRUD($variant, $ColumnId, $row){
     }
 }
 
-function dropDown($ColumnId, $label, $data, $row_selected){
+function dropDown($label, $ColumnId, $data, $row_selected){
     $ColumnId = "$ColumnId";
     $txt = "
     <label for='$label'>Choose a $label:</label>

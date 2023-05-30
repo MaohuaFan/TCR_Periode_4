@@ -150,12 +150,12 @@ function UpdateFilm($row){
         // Update data uit de opgegeven table methode prepare
         $sql = "UPDATE film
         SET 
-            filmnaam = '$row[filmnaam]', 
-            genreid = '$row[genreid]', 
-            releasejaar = '$row[releasejaar]', 
-            regisseur = '$row[regisseur]', 
-            landherkomst = '$row[landherkomst]',
-            duur = '$row[duur]'
+            `filmnaam` = '$row[filmnaam]', 
+            `genreid` = '$row[genreid]', 
+            `releasejaar` = '$row[releasejaar]', 
+            `regisseur` = '$row[regisseur]', 
+            `landherkomst` = '$row[landherkomst]',
+            `duur` = '$row[duur]'
         WHERE filmid = $row[filmid]";
         $query = $conn->prepare($sql);
         $query->execute();

@@ -35,6 +35,21 @@ function GetData($table){
 
     return $result;
 }
+function GetDataDistinct($table){
+    // Connect database
+    $conn = ConnectDb();
+
+    // Select data uit de opgegeven table methode query
+    // query: is een prepare en execute in 1 zonder placeholders
+    // $result = $conn->query("SELECT * FROM $table")->fetchAll();
+
+    // Select data uit de opgegeven table methode prepare
+    $query = $conn->prepare("SELECT DISTINCT * FROM $table");
+    $query->execute();
+    $result = $query->fetchAll();
+
+    return $result;
+}
 
  // selecteer de rij van de opgeven biercode uit de table bier
  function GetFilm($filmid){
@@ -56,7 +71,7 @@ function CrudFilm(){
     <nav>
 		<a href='Insert_Film.php'>Toevoegen nieuwe film</a>
     </nav>";
-    echo $txt;
+    echo $txt."<br>";
 
     // Haal alle film record uit de tabel 
     $result = GetData("film");
@@ -153,15 +168,15 @@ function InsertFilm($post){
     }
 }
 
-function DeleteBier($biercode){
+function DeleteFilm($filmid){
     echo "Delete row<br>";
     try{
         // Connect database
         $conn = ConnectDb();
         
         // Update data uit de opgegeven table methode prepare
-        $sql = "DELETE FROM bier
-                WHERE biercode = '$biercode'";
+        $sql = "DELETE FROM film
+                WHERE filmid = '$filmid'";
                 
         $query = $conn->prepare($sql);
         $result = $query->execute();
@@ -169,19 +184,6 @@ function DeleteBier($biercode){
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
     }
-}
-
-function dropDown2($label, $data, $row_selected=-1){
-    $text = "<label for='$label'>Choose a $label:</label>
-            <select name='$label' id='$label'>";
-
-    foreach($data as $row){
-        $text .= "<option value='$row[brouwcode]'>$row[naam]</option>\n";
-    }
-
-    $text .= "</select>";
-
-    echo "$text";
 }
 
 function dropDownGenre($label, $row_selected){
@@ -197,11 +199,11 @@ function dropDownGenre($label, $row_selected){
         }
     }
     $txt .= "</select>";
-    echo $txt;
+    echo $txt."<br>";
 }
 
 function dropDownRegisseur($label, $row_selected){
-    $data = GetData('film');
+    $data = GetDataDistinct('film');
     $txt = "
     <label for='$label'>Choose a $label:</label>
         <select name='$label' id='$label'>";
@@ -213,22 +215,22 @@ function dropDownRegisseur($label, $row_selected){
         }
     }
     $txt .= "</select>";
-    echo $txt;
+    echo $txt."<br>";
 }
 
 function dropDownLand($label, $row_selected){
-    $data = GetData('film');
+    $data = GetDataDistinct('film');
     $txt = "
     <label for='$label'>Choose a $label:</label>
         <select name='$label' id='$label'>";
     foreach($data as $row){
-        if ($row['lamdherkomst'] == $row_selected){
-            $txt .= "<option value='$row[landherkomst]' selected='selected'>$row[lamdherkomst]</option>\n";
+        if ($row['landherkomst'] == $row_selected){
+            $txt .= "<option value='$row[landherkomst]' selected='selected'>$row[landherkomst]</option>\n";
         } else {
-            $txt .= "<option value='$row[lamdherkomst]'>$row[landherkomst]</option>\n";
+            $txt .= "<option value='$row[landherkomst]'>$row[landherkomst]</option>\n";
         }
     }
     $txt .= "</select>";
-    echo $txt;
+    echo $txt."<br>";
 }
 ?>

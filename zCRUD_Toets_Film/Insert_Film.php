@@ -12,16 +12,6 @@
         echo '<script>alert("Filmnaam: ' . $_POST['filmnaam'] . ' is toegevoegd")</script>';
         //echo "<script> location.replace('CRUD_Film.php'); </script>";
     }
-    $query->execute(
-        [
-            ':filmnaam'=>$post['filmnaam'],
-            ':genreid'=>$post['genreid'],
-            ':releasejaar'=>$post['releasejaar'],
-            ':regisseur'=>$post['regisseur'],
-            ':landherkomst'=>$post['landherkomst'],
-            ':duur'=>$post['duur']
-        ]
-    );
 ?>
 
 <html>
@@ -31,7 +21,7 @@
             <?php
                 dropDownGenre('genre', -1);
             ?>
-            Releasejaar: <input type="date" name="releasejaar"><br>
+            Releasejaar: <input type="number" name="releasejaar"><br>
             <?php
                 dropDownRegisseur('regisseur', -1);
                 dropDownLand('landherkomst', -1);

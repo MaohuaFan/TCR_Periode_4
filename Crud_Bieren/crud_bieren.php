@@ -1,18 +1,14 @@
 <?php
-// Functie: Programma CRUD bieren
-// Auteur: Wigmans   
+// Functie: Programma CRUD 
+// Auteur: MHF   
 
 // Initialisatie
 include 'functions.php';
 
 // Main
+    // Insert CRUD
+    echo '<a href="Insert_CRUD.php">InsertBier</a> <br><br>';
 
-//InsertBier
-echo '<a href="insert_bier.php">InsertBier</a> <br><br>';
-
-
-// Print bieren opdracht 12
-CrudBieren();
-
-
+    // Print CRUD
+    CrudBieren();
 ?>

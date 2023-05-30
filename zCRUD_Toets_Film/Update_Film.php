@@ -1,10 +1,9 @@
 <?php
     // Auteur: Maohua Fan
-    // Functie: Wijzig een bier op basis van de biercode
+    // Functie: Wijzig een film op basis van de filmid
 
     require_once('functions.php');
-    echo "<h1>Update Bier</h1>";
-
+    echo "<h1>Update Film</h1>";
 
     // Test of er op de wijzig-knop is gedrukt 
     if(isset($_POST['btn_wzg'])){
@@ -13,36 +12,37 @@
         //header("location: crud_bieren.php");
     }
 
-    if(isset($_GET['biercode'])){  
-        // Haal alle info van de betreffende biercode $_GET['biercode']
-        $biercode = $_GET['biercode'];
-        $row = GetBier($biercode);
+    if(isset($_GET['filmid'])){  
+        // Haal alle info van de betreffende filmid $_GET['filmid']
+        $filmid = $_GET['filmid'];
+        $row = GetFilm($filmid);
 ?>
 
 <html>
     <body>
         <form method="post">
         <br>
-        <input type="hidden" name="biercode" value="<?php echo $row['biercode'];?>"><br>
-        Naam:<input type="" name="naam" value="<?php echo $row['naam'];?>"><br> 
-        Soort: <input type="text" name="soort" value="<?= $row['soort']?>"><br>
-        Stijl: <input type="text" name="stijl" value="<?= $row['stijl']?>"><br>
-        Alcohol: <input type="text" name="alcohol" value="<?= $row['alcohol']?>"><br>
+        <input type="hidden" name="filmid" value="<?php echo $row['filmid'];?>"><br>
+        Filmnaam:<input type="" name="naam" value="<?php echo $row['filmnaam'];?>"><br> 
         <?php
-            dropDownBrouwer('brouwcode', $row['brouwcode'] );
+                dropDownGenre('genre', $row['genreid']);
         ?>
-
-        <!---Brouwcode: <input type="text" name="brouwcode" value="<?= $row['brouwcode']?>">-->
+        Releasejaar: <input type="number" name="releasejaar" value="<?= $row['releasejaar']?>"><br>
+        <?php
+                dropDownRegisseur('regisseur', $row['regisseur']);
+                dropDownLand('landherkomst', $row['landherkomst']);
+        ?>
+        Duur: <input type="number" name="duur" value="<?= $row['duur']?>"><br>
         <br><br>
          <input type="submit" name="btn_wzg" value="Wijzigen"><br>
         </form>
         <br><br>
-        <a href='crud_bieren.php'>Home</a>
+        <a href='CRUD_Film.php'>Home</a>
     </body>
 </html>
 
 <?php
     } else {
-        "Geen biercode opgegeven<br>";
+        "Geen filmid opgegeven<br>";
     }
 ?>

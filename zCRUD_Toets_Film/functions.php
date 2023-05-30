@@ -35,6 +35,25 @@ function GetData($table){
 
     return $result;
 }
+
+function GetDataJoint($table){
+    // Connect database
+    $conn = ConnectDb();
+    $column = "filmid, filmnaam, genrenaam, releasejaar, regisseur, landherkomst, duur";
+    $filter ="WHERE film.genreid = genre.genreid";
+
+    // Select data uit de opgegeven table methode query
+    // query: is een prepare en execute in 1 zonder placeholders
+    // $result = $conn->query("SELECT * FROM $table")->fetchAll();
+
+    // Select data uit de opgegeven table methode prepare
+    $query = $conn->prepare("SELECT $column FROM $table $filter");
+    $query->execute();
+    $result = $query->fetchAll();
+
+    return $result;
+}
+
 function GetDataDistinct($table){
     // Connect database
     $conn = ConnectDb();

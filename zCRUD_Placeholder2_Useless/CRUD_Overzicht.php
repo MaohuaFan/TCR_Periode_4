@@ -10,5 +10,5 @@ include 'functions.php';
     echo"<a href='Insert_CRUD.php'>Insert CRUD</a><br><br>";
 
     // Print CRUD Overzicht
-    CrudBieren();
+    CrudOverzicht();
 ?>

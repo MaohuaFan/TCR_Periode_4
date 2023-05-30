@@ -23,7 +23,7 @@
         <form method="post">
         <br>
         <input type="hidden" name="filmid" value="<?php echo $row['filmid'];?>"><br>
-        Filmnaam:<input type="text" name="naam" value="<?php echo $row['filmnaam'];?>"><br> 
+        Filmnaam:<input type="text" name="filmnaam" value="<?php echo $row['filmnaam'];?>"><br> 
         <?php
                 dropDownGenre('genreid', $row['genreid']);
         ?>

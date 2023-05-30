@@ -19,7 +19,7 @@
         <form method="post"><br>
             Filmnaam:<input type="text" name="filmnaam"><br> 
             <?php
-                dropDownGenre('genre', -1);
+                dropDownGenre('genreid', -1);
             ?>
             Releasejaar: <input type="number" name="releasejaar"><br>
             <?php

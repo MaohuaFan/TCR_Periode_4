@@ -126,7 +126,7 @@ function PrintCrudFilm($result){
         // Wijzig knopje
         $table .= "<td>". 
             "<form method='post' action='Update_Film.php?filmid=$row[filmid]' >       
-                    <button name='weizig'>Weizig</button>	 
+                    <button name='wijzig'>Wijzig</button>	 
             </form>" . "</td>";
 
         // Delete knopje
@@ -164,24 +164,28 @@ function UpdateFilm($row){
     }
 }
 
-function InsertFilm($post){
+function InsertFilm($POST){
     try {
         $conn = ConnectDb();
+        var_dump($POST);
+        echo"<br>";
 
-        $query = $conn->prepare("
-        INSERT INTO `film` (`filmnaam`, `genreid`, `releasejaar`, `regisseur`, `landherkomst`, `duur`) 
-        VALUES (':filmnaam', ':genreid', ':releasejaar', ':regisseur', ':landherkomst', ':duur')");
+        $sql = "INSERT INTO `film`
+        (`filmnaam`, `genreid`, `releasejaar`, `regisseur`, `landherkomst`, `duur`) 
+    VALUES (:filmnaam, :genreid, :releasejaar, :regisseur, :landherkomst, :duur)";
 
-        $query->execute(
-            [
-                ':filmnaam'=>$post['filmnaam'],
-                ':genreid'=>$post['genreid'],
-                ':releasejaar'=>$post['releasejaar'],
-                ':regisseur'=>$post['regisseur'],
-                ':landherkomst'=>$post['landherkomst'],
-                ':duur'=>$post['duur']
-            ]
-        );
+    $query = $conn->prepare($sql);
+
+    $query->execute(
+        [
+            ':filmnaam' => $POST['filmnaam'],
+            ':genreid' => $POST['genreid'],
+            ':releasejaar' => $POST['releasejaar'],
+            ':regisseur' => $POST['regisseur'],
+            ':landherkomst' => $POST['landherkomst'],
+            ':duur' => $POST['duur']
+        ]
+    );
     } catch(PDOException $e) {
         echo "Insert failed: " . $e->getMessage();
     }
@@ -206,15 +210,15 @@ function DeleteFilm($filmid){
 }
 
 function dropDownGenre($label, $row_selected){
-    $data = GetData('genre');
+    $data = GetData('film');
     $txt = "
     <label for='$label'>Choose a $label:</label>
         <select name='$label' id='$label'>";
     foreach($data as $row){
         if ($row['genreid'] == $row_selected){
-            $txt .= "<option value='$row[genreid]' selected='selected'>$row[genrenaam]</option>\n";
+            $txt .= "<option value='$row[genreid]' selected='selected'>$row[genreid]</option>\n";
         } else {
-            $txt .= "<option value='$row[genreid]'>$row[genrenaam]</option>\n";
+            $txt .= "<option value='$row[genreid]'>$row[genreid]</option>\n";
         }
     }
     $txt .= "</select>";

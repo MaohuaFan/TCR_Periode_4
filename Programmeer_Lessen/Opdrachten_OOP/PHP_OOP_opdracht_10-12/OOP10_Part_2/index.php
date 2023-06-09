@@ -1,4 +1,6 @@
 <?php
+    declare(strict_types=1);
+    
     require_once 'Music.php';
 
     $music1 = new Music (name: 'Bach', genre:'Klassiek', listen: 3);

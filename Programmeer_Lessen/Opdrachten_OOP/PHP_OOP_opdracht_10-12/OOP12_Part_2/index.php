@@ -10,8 +10,8 @@
     $music1 = new Music (name: 'Bach', genre:'Klassiek', listen: 3);
     $music2 = new Music (name:'ABC', genre: 'House', listen: 2);
 
-    $kees->addMovie($movie1);
-    $kees->addMovie($movie2);
+    $kees->addMusic($music1);
+    $kees->addMusic($music2);
     
     echo $music1->getName()."<br><br>";
     echo $music2->getName()."<br><br>";

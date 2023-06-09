@@ -2,7 +2,7 @@
 
 class ListenList
 {
-    public array $movies = [];
+    public array $music = [];
 
     public function addMusic($music)
     {

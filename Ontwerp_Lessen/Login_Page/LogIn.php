@@ -19,14 +19,15 @@
     <title>Sign In</title>
 </head>
 <body>
+    <h1>PHP - PDO Login and Registration</h1>
     <section>
-        <h1>Log in</h1>
+        <h2>Login here...</h2>
         <form action="#" method="post">
                 <label for="username">Username: <input type="text" name="username"></label><br>
                 <label for="password">Password: <input type="password" name="password"></label><br>
-                <input type="submit" value="Submit">
-            </form><br><br>
-        <a href="SignUp.php">Sign up</a>
+                <input type="submit" value="Login">
+            </form><br>
+        <a href="SignUp.php">Registration</a>
     </section>
 </body>
 </html>

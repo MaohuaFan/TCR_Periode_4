@@ -46,12 +46,12 @@ function Overzicht(){
             $username = $result[0]["username"];
             $password = $result[0]["password"];
 
-            echo "<p>Je bent ingelogd met:</p>";
+            echo "<p>U bent ingelogd met:</p>";
             echo "Username: $username <br>";
             echo "Password: $password";
         }
     } else{
-        echo "<p>Je bent niet ingelogd</p>";
+        echo "<p>U bent niet ingelogd. Log in om verder te gaan.</p>";
     }
 
     echo "<br><br>";
@@ -97,12 +97,11 @@ function LogIn(){
 }
 
 function Logout(){
-    session_start();
     session_unset();
     header('Location: Index.php');
 }
 
-function SignUp(){
+function Registration(){
     if (isset($_POST['username']) && isset($_POST['password'])){
         $username = $_POST['username'];
         $password = $_POST['password'];

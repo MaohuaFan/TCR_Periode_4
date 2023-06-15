@@ -20,7 +20,7 @@
 <body>
     <h1>PDO Login and Registration</h1>
     <section>
-        <h2>Welkom op de home-pagina</h2>
+        <h2>Welkom op de HOME-pagina!</h2>
         <?php
             Overzicht();
         ?>

@@ -46,7 +46,8 @@ function Overzicht(){
             $username = $result[0]["username"];
             $password = $result[0]["password"];
 
-            echo "<p>U bent ingelogd met:</p>";
+            echo"<h2>Het spel kan beginnen</h2>";
+            echo "<p>Je bent ingelogd met:</p>";
             echo "Username: $username <br>";
             echo "Password: $password";
         }

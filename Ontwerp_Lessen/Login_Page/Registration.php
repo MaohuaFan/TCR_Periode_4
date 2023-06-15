@@ -20,7 +20,7 @@
         <form method="post">
             <label for="username">Username: <input type="text" name="username" required></label><br>
             <label for="password">Password: <input type="password" name="password" required></label><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Register">
         </form>
     </section>
 </body>

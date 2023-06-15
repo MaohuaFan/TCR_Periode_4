@@ -36,10 +36,10 @@ function GetData($sql, $params = array()){
 
 function Overzicht(){
     if(isset($_SESSION["account"])){
-        $accountId = $_SESSION["account"];
+        $username = $_SESSION["account"];
 
         // Retrieve the username and password from the database using the session ID
-        $sql = "SELECT * FROM account WHERE ID = $accountId";
+        $sql = "SELECT * FROM account WHERE username = $username";
         $result = GetData($sql);
 
         if (count($result) > 0) {
@@ -59,14 +59,14 @@ function Overzicht(){
 
     if(!empty(isset($_SESSION["account"]))){
         echo"   <form action='Logout.php' method='post'>
-                    <button name='submit'>Sign Out</button>	 
+                    <button name='submit'>Log out</button>	 
                 </form>";
     } else{
-        echo "<a href='LogIn.php'>Sign In</a>";
+        echo "<a href='Login.php'>Log in</a>";
     }
 }
 
-function LogIn(){
+function Login(){
     if(isset($_POST['username']) && isset($_POST['password'])){
         $sql = "SELECT * FROM account";
         $result = GetData($sql);
@@ -76,7 +76,7 @@ function LogIn(){
 
         foreach ($result as $row){
             if ($row["username"] == $username && $row["password"] == $password){
-                $_SESSION["account"] = $row["id"];
+                $_SESSION["account"] = $row["username"];
                 header("Location: index.php");
             }
         }
@@ -90,7 +90,7 @@ function LogIn(){
 
         foreach ($result as $row){
             if($row["username"] == $username && $row["password"] == $password){
-                $_SESSION["account"] = $row["id"];
+                $_SESSION["account"] = $row["username"];
                 header("Location: index.php");
             }
         }
@@ -108,7 +108,7 @@ function Registration(){
         $password = $_POST['password'];
     
         // Check if username already exists in the database
-        $sql = "SELECT * FROM account WHERE Username = :username";
+        $sql = "SELECT * FROM account WHERE username = :username";
         $existingUser = GetData($sql, [':username' => $username]);
     
         if (count($existingUser) > 0) {

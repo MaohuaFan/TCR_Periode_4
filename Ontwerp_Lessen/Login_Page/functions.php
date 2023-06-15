@@ -35,18 +35,16 @@ function GetData($sql, $params = array()){
 }
 
 function Overzicht(){
-    if(isset($_SESSION["account"])){
+    if(!empty(isset($_SESSION["account"]))){
         $username = $_SESSION["account"];
 
         // Retrieve the username and password from the database using the session ID
-        $sql = $sql = "SELECT * FROM account WHERE username = '$username'";;
+        $sql = $sql = "SELECT * FROM account WHERE username = '$username'";
         $result = GetData($sql);
-
         if ($result !== null && count($result) > 0) {
-            $username = $result[0]["username"];
             $password = $result[0]["password"];
 
-            echo"<h2>Het spel kan beginnen</h2>";
+            echo "<h2>Het spel kan beginnen</h2>";
             echo "<p>Je bent ingelogd met:</p>";
             echo "Username: $username <br>";
             echo "Password: $password";
@@ -67,7 +65,7 @@ function Overzicht(){
 }
 
 function Login(){
-    if(isset($_POST['username']) && isset($_POST['password'])){
+    if(!empty(isset($_POST['username']) && isset($_POST['password']))){
         $sql = "SELECT * FROM account";
         $result = GetData($sql);
 
@@ -81,7 +79,7 @@ function Login(){
             }
         }
 
-    } elseif(isset($_GET['username']) && isset($_GET['password'])){
+    } elseif(!empty(isset($_GET['username']) && isset($_GET['password']))){
         $sql = "SELECT * FROM account";
         $result = GetData($sql);
 
@@ -103,7 +101,7 @@ function Logout(){
 }
 
 function Registration(){
-    if (isset($_POST['username']) && isset($_POST['password'])){
+    if(!empty(isset($_POST['username']) && isset($_POST['password']))){
         $username = $_POST['username'];
         $password = $_POST['password'];
     

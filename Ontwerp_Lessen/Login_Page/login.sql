@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2023 at 11:22 AM
+-- Generation Time: Jun 15, 2023 at 11:25 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `account` (
-  `id` int(18) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -37,10 +36,10 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`id`, `username`, `password`) VALUES
-(1, 'test', 'test'),
-(2, 'test1', 'test1'),
-(3, 'test2', 'test2');
+INSERT INTO `account` (`username`, `password`) VALUES
+('test', 'test'),
+('test1', 'test1'),
+('test2', 'test2');
 
 --
 -- Indexes for dumped tables
@@ -50,17 +49,7 @@ INSERT INTO `account` (`id`, `username`, `password`) VALUES
 -- Indexes for table `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `account`
---
-ALTER TABLE `account`
-  MODIFY `id` int(18) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  ADD PRIMARY KEY (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

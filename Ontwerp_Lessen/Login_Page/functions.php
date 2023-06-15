@@ -39,10 +39,10 @@ function Overzicht(){
         $username = $_SESSION["account"];
 
         // Retrieve the username and password from the database using the session ID
-        $sql = "SELECT * FROM account WHERE username = $username";
+        $sql = $sql = "SELECT * FROM account WHERE username = '$username'";;
         $result = GetData($sql);
 
-        if (count($result) > 0) {
+        if ($result !== null && count($result) > 0) {
             $username = $result[0]["username"];
             $password = $result[0]["password"];
 

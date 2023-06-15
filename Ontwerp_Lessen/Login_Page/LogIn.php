@@ -19,8 +19,8 @@
     <title>Sign In</title>
 </head>
 <body>
-    <h1>PHP - PDO Login and Registration</h1>
     <section>
+        <h1>PHP - PDO Login and Registration</h1>
         <h2>Login here...</h2>
         <form action="#" method="post">
                 <label for="username">Username: <input type="text" name="username"></label><br>

@@ -18,8 +18,10 @@
     <title>Home Pagina</title>
 </head>
 <body>
-    <h1>PDO Login and Registration</h1>
+
     <section>
+        <h1>PDO Login and Registration</h1>
+        
         <h2>Welkom op de HOME-pagina!</h2>
         <?php
             Overzicht();

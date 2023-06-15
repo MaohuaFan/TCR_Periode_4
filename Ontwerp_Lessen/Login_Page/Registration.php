@@ -15,7 +15,8 @@
 </head>
 <body>
     <section>
-        <h1>Registration</h1>
+        <h1>PHP - PDO Login and Registration</h1>
+        <h2>Registration</h2>
         <form method="post">
             <label for="username">Username: <input type="text" name="username"></label><br>
             <label for="password">Password: <input type="password" name="password"></label><br>

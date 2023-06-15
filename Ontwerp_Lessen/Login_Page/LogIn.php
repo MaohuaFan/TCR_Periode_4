@@ -23,8 +23,8 @@
         <h1>PHP - PDO Login and Registration</h1>
         <h2>Login here...</h2>
         <form action="#" method="post">
-                <label for="username">Username: <input type="text" name="username"></label><br>
-                <label for="password">Password: <input type="password" name="password"></label><br>
+                <label for="username">Username: <input type="text" name="username" required></label><br>
+                <label for="password">Password: <input type="password" name="password" required></label><br>
                 <input type="submit" value="Login">
             </form><br>
         <a href="Registration.php">Registration</a>

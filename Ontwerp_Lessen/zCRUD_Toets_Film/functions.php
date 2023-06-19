@@ -1,6 +1,8 @@
 <?php
+
 // Auteur: Maohua Fan
 // Functie: Algemene functies tbv hergebruik
+
 function ConnectDb(){
     $servername = "localhost";
     $username = "root";
@@ -19,8 +21,9 @@ function ConnectDb(){
     }
 }
 
-// selecteer de data uit de opgeven table
-function GetData($table){
+// Selecteer de data uit de opgeven table
+
+function GetData($sql, $params = array()){
     // Connect database
     $conn = ConnectDb();
 
@@ -29,56 +32,19 @@ function GetData($table){
     // $result = $conn->query("SELECT * FROM $table")->fetchAll();
 
     // Select data uit de opgegeven table methode prepare
-    $query = $conn->prepare("SELECT * FROM $table");
-    $query->execute();
-    $result = $query->fetchAll();
+        $query = $conn->prepare($sql);
+        $query->execute($params);
+        $result = $query->fetchAll();
 
-    return $result;
-}
-
-function GetDataJoint($table){
-    // Connect database
-    $conn = ConnectDb();
-    $column = "filmid, filmnaam, genrenaam, releasejaar, regisseur, landherkomst, duur";
-    $filter ="WHERE film.genreid = genre.genreid";
-
-    // Select data uit de opgegeven table methode query
-    // query: is een prepare en execute in 1 zonder placeholders
-    // $result = $conn->query("SELECT * FROM $table")->fetchAll();
-
-    // Select data uit de opgegeven table methode prepare
-    $query = $conn->prepare("SELECT $column FROM $table $filter");
-    $query->execute();
-    $result = $query->fetchAll();
-
-    return $result;
-}
-
-function GetDataDistinct($table){
-    // Connect database
-    $conn = ConnectDb();
-
-    // Select data uit de opgegeven table methode query
-    // query: is een prepare en execute in 1 zonder placeholders
-    // $result = $conn->query("SELECT * FROM $table")->fetchAll();
-
-    // Select data uit de opgegeven table methode prepare
-    $query = $conn->prepare("SELECT DISTINCT * FROM $table");
-    $query->execute();
-    $result = $query->fetchAll();
-
-    return $result;
+        return $result;
 }
 
  // selecteer de rij van de opgeven filmid uit de table film
  function GetFilm($filmid){
-    // Connect database
-    $conn = ConnectDb();
-
-    // Select data uit de opgegeven table methode prepare
-    $query = $conn->prepare("SELECT * FROM film WHERE filmid = :filmid");
-    $query->execute([':filmid'=>$filmid]);
-    $result = $query->fetch();
+    $sql = "SELECT * FROM film WHERE filmid = :filmid";
+    $params = [':filmid' => $filmid];
+    
+    $result = GetData($sql, $params);
 
     return $result;
 }
@@ -93,7 +59,8 @@ function CrudFilm(){
     echo $txt."<br>";
 
     // Haal alle film record uit de tabel 
-    $result = GetData("film");
+    $sql = "SELECT * FROM film";
+    $result = GetData($sql);
 
     //print table
     PrintCrudFilm($result);
@@ -164,28 +131,29 @@ function UpdateFilm($row){
     }
 }
 
-function InsertFilm($POST){
+function InsertFilm($Post){
     try {
         $conn = ConnectDb();
-        var_dump($POST);
+        var_dump($Post);
         echo"<br>";
 
         $sql = "INSERT INTO `film`
         (`filmnaam`, `genreid`, `releasejaar`, `regisseur`, `landherkomst`, `duur`) 
-    VALUES (:filmnaam, :genreid, :releasejaar, :regisseur, :landherkomst, :duur)";
+        VALUES (:filmnaam, :genreid, :releasejaar, :regisseur, :landherkomst, :duur)";
+
+        $param = 
+            ([
+                ':filmnaam' => $Post['filmnaam'],
+                ':genreid' => $Post['genreid'],
+                ':releasejaar' => $Post['releasejaar'],
+                ':regisseur' => $Post['regisseur'],
+                ':landherkomst' => $Post['landherkomst'],
+                ':duur' => $Post['duur']
+            ]);
 
     $query = $conn->prepare($sql);
 
-    $query->execute(
-        [
-            ':filmnaam' => $POST['filmnaam'],
-            ':genreid' => $POST['genreid'],
-            ':releasejaar' => $POST['releasejaar'],
-            ':regisseur' => $POST['regisseur'],
-            ':landherkomst' => $POST['landherkomst'],
-            ':duur' => $POST['duur']
-        ]
-    );
+    $query->execute($param);
     } catch(PDOException $e) {
         echo "Insert failed: " . $e->getMessage();
     }
@@ -202,7 +170,7 @@ function DeleteFilm($filmid){
                 WHERE filmid = '$filmid'";
                 
         $query = $conn->prepare($sql);
-        $result = $query->execute();
+        $query->execute();
 
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
@@ -210,15 +178,16 @@ function DeleteFilm($filmid){
 }
 
 function dropDownGenre($label, $row_selected){
-    $data = GetData('film');
+    $sql = "SELECT DISTINCT film.genreid, genre.genrenaam FROM film, genre WHERE film.genreid = genre.genreid";
+    $result = GetData($sql);
     $txt = "
     <label for='$label'>Choose a $label:</label>
         <select name='$label' id='$label'>";
-    foreach($data as $row){
+    foreach($result as $row){
         if ($row['genreid'] == $row_selected){
-            $txt .= "<option value='$row[genreid]' selected='selected'>$row[genreid]</option>\n";
+            $txt .= "<option value='$row[genreid]' selected='selected'>$row[genrenaam]</option>\n";
         } else {
-            $txt .= "<option value='$row[genreid]'>$row[genreid]</option>\n";
+            $txt .= "<option value='$row[genreid]'>$row[genrenaam]</option>\n";
         }
     }
     $txt .= "</select>";
@@ -226,11 +195,12 @@ function dropDownGenre($label, $row_selected){
 }
 
 function dropDownRegisseur($label, $row_selected){
-    $data = GetDataDistinct('film');
+    $sql = "SELECT DISTINCT regisseur FROM film";
+    $result = GetData($sql);
     $txt = "
     <label for='$label'>Choose a $label:</label>
         <select name='$label' id='$label'>";
-    foreach($data as $row){
+    foreach($result as $row){
         if ($row['regisseur'] == $row_selected){
             $txt .= "<option value='$row[regisseur]' selected='selected'>$row[regisseur]</option>\n";
         } else {
@@ -242,11 +212,12 @@ function dropDownRegisseur($label, $row_selected){
 }
 
 function dropDownLand($label, $row_selected){
-    $data = GetDataDistinct('film');
+    $sql = "SELECT DISTINCT landherkomst FROM film";
+    $result = GetData($sql);
     $txt = "
     <label for='$label'>Choose a $label:</label>
         <select name='$label' id='$label'>";
-    foreach($data as $row){
+    foreach($result as $row){
         if ($row['landherkomst'] == $row_selected){
             $txt .= "<option value='$row[landherkomst]' selected='selected'>$row[landherkomst]</option>\n";
         } else {
@@ -256,4 +227,5 @@ function dropDownLand($label, $row_selected){
     $txt .= "</select>";
     echo $txt."<br>";
 }
+
 ?>

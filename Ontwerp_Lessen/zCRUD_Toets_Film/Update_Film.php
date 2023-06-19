@@ -16,23 +16,24 @@
         // Haal alle info van de betreffende filmid $_GET['filmid']
         $filmid = $_GET['filmid'];
         $row = GetFilm($filmid);
+        var_dump($row);
 ?>
 
 <html>
     <body>
         <form method="post">
         <br>
-        <input type="hidden" name="filmid" value="<?php echo $row['filmid'];?>"><br>
-        Filmnaam:<input type="text" name="filmnaam" value="<?php echo $row['filmnaam'];?>"><br> 
+        <input type="hidden" name="filmid" value="<?php echo $row[0]['filmid'];?>"><br>
+        Filmnaam:<input type="text" name="filmnaam" value="<?php echo $row[0]['filmnaam'];?>"><br> 
         <?php
-                dropDownGenre('genreid', $row['genreid']);
+                dropDownGenre('genrenaam', ['genrenaam']);
         ?>
-        Releasejaar: <input type="number" name="releasejaar" value="<?= $row['releasejaar']?>"><br>
+        Releasejaar: <input type="number" name="releasejaar" value="<?= $row[0]['releasejaar']?>"><br>
         <?php
-                dropDownRegisseur('regisseur', $row['regisseur']);
-                dropDownLand('landherkomst', $row['landherkomst']);
+                dropDownRegisseur('regisseur', $row[0]['regisseur']);
+                dropDownLand('landherkomst', $row[0]['landherkomst']);
         ?>
-        Duur: <input type="number" name="duur" value="<?= $row['duur']?>"><br>
+        Duur: <input type="number" name="duur" value="<?= $row[0]['duur']?>"><br>
         <br><br>
          <input type="submit" name="btn_wzg" value="Wijzigen"><br>
         </form>

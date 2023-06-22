@@ -1,5 +1,5 @@
 # Function: Checks if you are old enough to take driving lessons.
-# Author: Cornelis Zoutewelle
+# Author: 
 
 leeftijd = int(input("Wat is je leeftijd? "))
 

@@ -1,1 +1,0 @@
-# Opdracht 2.2 is het zelfde als opdracht 2.1

@@ -1,5 +1,5 @@
 # Function: Dice system.
-# Author: Cornelis Zoutewelle
+# Author: 
 
 # Imports
 import random

@@ -1,5 +1,5 @@
 # Function: Asks the user for three hobbies and prints them.
-# Author: Cornelis Zoutewelle
+# Author: 
 
 # Empty list for the hobbies.
 hobbies = []

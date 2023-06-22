@@ -1,5 +1,5 @@
 # Function: Calculates the faculteit of a given number.
-# Author: Cornelis Zoutewelle
+# Author: 
 
 # Function that calculates the faculteit.
 def bereken_faculteit(n):

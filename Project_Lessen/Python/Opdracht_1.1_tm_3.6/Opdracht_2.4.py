@@ -1,5 +1,5 @@
 # Function: Shows the score of the player who has won.
-# Author: Cornelis Zoutewelle
+# Author: 
 
 # Input for the score of the two players.
 score_speler1 = int(input("Score speler 1: "))

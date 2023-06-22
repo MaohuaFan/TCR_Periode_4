@@ -1,5 +1,5 @@
 # Function: Roulette game in Python. (Using random import)
-# Author: Cornelis Zoutewelle
+# Author: 
 
 # Imports
 import random

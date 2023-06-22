@@ -1,5 +1,5 @@
 # Function: Voting system.
-# Author: Cornelis Zoutewelle
+# Author: 
 
 stemmen = {}
 

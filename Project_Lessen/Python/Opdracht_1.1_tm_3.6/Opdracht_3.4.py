@@ -1,4 +1,4 @@
 # Function: Lootbox system.
-# Author: Cornelis Zoutewelle
+# Author: 
 
 # Wordt naar gekeken...

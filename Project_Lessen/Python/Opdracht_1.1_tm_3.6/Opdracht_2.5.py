@@ -1,5 +1,5 @@
 # Function: Allows the user to multiply two given numbers.
-# Author: Cornelis Zoutewelle
+# Author: 
 
 # Function that allows for multiplication of two numbers.
 def vermenigvuldig_getallen(a, b):
